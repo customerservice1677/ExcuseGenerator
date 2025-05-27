@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="monetag" content="530299a46d0d7a56e98629d4e98513ef">
+  <title>Write My Excuse Generator</title>
+  <style>
+    body {
+      margin: 0;
+      background: #111;
+      color: #fff;
+      font-family: 'Segoe UI', sans-serif;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      text-align: center;
+    }
+    h1 {
+      font-size: 2.5em;
+      margin-bottom: 20px;
+    }
+    #excuse {
+      font-size: 1.5em;
+      margin: 30px;
+      max-width: 700px;
+    }
+    button {
+      background: #00cc99;
+      border: none;
+      padding: 15px 30px;
+      font-size: 1.2em;
+      color: #fff;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: 0.2s ease;
+      margin: 10px;
+    }
+    button:hover {
+      background: #00a87d;
+      transform: scale(1.05);
+    }
+    #counter {
+      margin-top: 20px;
+      font-size: 0.9em;
+      color: #999;
+    }
+  </style>
+</head>
+<body>
+  <h1>Write My Excuse</h1>
+  <div id="excuse">Click the button to generate an excuse...</div>
+  <button onclick="generateExcuse()">Generate Excuse</button>
+  <button onclick="copyExcuse()">Copy to Clipboard</button>
+  <div id="counter">Excuses generated: 0</div>
+
+  <script>
+    const who = [
+      "My dog", "My cat", "My grandma", "My neighbor", "My AI assistant", "My goldfish",
+      "My teacher", "A ghost", "My sibling", "My lizard", "A raccoon", "My microwave",
+      "A pigeon", "My Wi-Fi", "My car", "My smart fridge", "My clone", "A TikTok influencer",
+      "The government", "My imaginary friend", "A squirrel", "An alien", "My evil twin", 
+      "The janitor", "My alarm clock", "The metaverse", "A time traveler", "My boss",
+      "The neighbor’s duck", "My shadow", "The weather", "My ex", "A hacker", "My robot vacuum",
+      "A guy named Kevin", "A squirrel on caffeine", "My inner child", "A confused barista", 
+      "A Karen", "My D&D character", "My anime waifu", "The Matrix", "The cloud", 
+      "The voice in my head", "A potato", "ChatGPT", "My therapist", "A snail", "A jellybean"
+    ];
+
+    const what = [
+      "ate my homework", "broke the router", "stole my laptop", "erased my calendar",
+      "set my house on fire", "confused the time zones", "hid my alarm clock", 
+      "messed with my settings", "played Fortnite all night", "scheduled a fake Zoom call",
+      "turned off the internet", "installed 17 toolbars", "filled my shoes with yogurt",
+      "sent me back in time", "hacked my Gmail", "crashed my car", "locked me out",
+      "hid all the pens", "reversed gravity", "summoned a tornado", "bit my arm",
+      "kidnapped my motivation", "declared a thumb war", "started a cult",
+      "unplugged the universe", "deleted my brain", "ran off with my phone",
+      "uploaded me to Minecraft", "downloaded a virus", "challenged me to a duel",
+      "flooded the kitchen", "built a rocket", "ate all the paper", "turned into a burrito",
+      "started a dance party", "glitched reality", "made me invisible", "rewrote the laws of physics",
+      "hacked my fridge", "looped the simulation", "signed me up for clown school", 
+      "opened a black hole", "used up all the Wi-Fi", "snored so loud it broke windows",
+      "covered everything in cheese", "made my printer sentient", "lost the timezone file",
+      "uploaded memes instead", "installed a mirror app"
+    ];
+
+    const when = [
+      "this morning", "last night", "just before class", "at 3 AM", "while I was ready", 
+      "as I joined Zoom", "after lunch", "during the apocalypse", "while I was showering",
+      "as I hit submit", "mid-sentence", "when I blinked", "while meditating", "right on time",
+      "while I was breathing", "as the world ended", "just now", "exactly when it mattered",
+      "during the test", "while I was studying", "in a parallel universe", 
+      "after I fell asleep", "when the power surged", "while everyone watched",
+      "on my way here", "in my dream", "as I was born", "while I blinked", "as the clock struck 13"
+    ];
+
+    const why = [
+      "so I couldn’t finish", "so I missed the deadline", "and that’s why I’m late", 
+      "so I panicked", "and everything exploded", "and here we are", 
+      "so now I'm grounded", "so I need an extension", "which explains everything",
+      "so I blame capitalism"
+    ];
+
+    let counter = 0;
+
+    function random(arr) {
+      return arr[Math.floor(Math.random() * arr.length)];
+    }
+
+    function generateExcuse() {
+      const excuse = `${random(who)} ${random(what)} ${random(when)}, ${random(why)}.`;
+      document.getElementById("excuse").innerText = excuse;
+      counter++;
+      document.getElementById("counter").innerText = `Excuses generated: ${counter.toLocaleString()}`;
+    }
+
+    function copyExcuse() {
+      const text = document.getElementById("excuse").innerText;
+      navigator.clipboard.writeText(text).then(() => {
+        alert("Excuse copied to clipboard!");
+      });
+    }
+  </script>
+</body>
+</html>
